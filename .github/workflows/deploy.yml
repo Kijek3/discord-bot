@@ -1,0 +1,33 @@
+# Give the workflow a name. 
+name: Continuous Deployment
+
+# Trigger Workflow on master/production branch. 
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "deploy"
+  deploy:
+    name: Deploy
+    # make sure to run this action in Linux env (say ubuntu)
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@master
+      # all environment variables needed to connect with Server is placed in with. 
+      with:
+        host: ${{ secrets.HOST }}
+        key: ${{ secrets.KEY }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        port: ${{ secrets.PORT }}
+        script: |
+          node --version
+          ls
+
