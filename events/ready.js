@@ -1,7 +1,10 @@
+const chalk = require('chalk');
+
 module.exports = {
   name: 'ready',
   once: true,
   execute(client) {
-    console.log(`Ready! Logged in as ${client.user.tag}`);
+    client.user.setActivity('ofiary', { type: 'WATCHING' });
+    console.log(chalk.yellowBright('Ready!'), `Logged in as ${client.user.tag}`);
   },
 };
