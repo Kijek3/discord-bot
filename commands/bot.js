@@ -5,6 +5,6 @@ module.exports = {
     .setName('bot')
     .setDescription('Opowiem Ci trochę o sobie!'),
   async execute(interaction) {
-    await interaction.reply('Jestem Mordeusz!');
+    await interaction.reply(`Jestem Mordeusz! Co tam u Ciebie ${interaction.user.username}?`);
   },
 };
