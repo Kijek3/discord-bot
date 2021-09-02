@@ -2,7 +2,7 @@ const chalk = require('chalk');
 
 module.exports = {
   name: 'interactionCreate',
-  execute(interaction) {
+  async execute(interaction) {
     if (!interaction.isCommand()) return;
 
     const command = interaction.client.commands.get(interaction.commandName);
@@ -10,10 +10,10 @@ module.exports = {
 
     try {
       console.log(`${interaction.user.tag} in #${interaction.channel.name} triggered an ${interaction.commandName} interaction.`);
-      command.execute(interaction);
+      await command.execute(interaction);
     } catch (error) {
       console.error(chalk.redBright('ERROR!'), error);
-      interaction.reply({ content: 'Sorki, coś się rozj*bało po mojej stronie', ephemeral: true });
+      await interaction.reply({ content: 'Sorki, coś się posypało po mojej stronie :(', ephemeral: true });
     }
   },
 };
