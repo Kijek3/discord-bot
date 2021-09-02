@@ -1,5 +1,3 @@
-const chalk = require('chalk');
-
 module.exports = {
   name: 'interactionCreate',
   async execute(interaction) {
@@ -12,7 +10,7 @@ module.exports = {
       console.log(`${interaction.user.tag} in #${interaction.channel.name} triggered an ${interaction.commandName} interaction.`);
       await command.execute(interaction);
     } catch (error) {
-      console.error(chalk.redBright('ERROR!'), error);
+      console.error(error);
       await interaction.reply({ content: 'Sorki, coś się posypało po mojej stronie :(', ephemeral: true });
     }
   },
