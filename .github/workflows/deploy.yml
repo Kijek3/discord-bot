@@ -27,6 +27,7 @@ jobs:
         port: ${{ secrets.PORT }}
         script: |
           cd mordeusz-discord-bot
+          git reset --hard
           git pull -q
           npm i
           node deploy-commands.js
