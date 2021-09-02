@@ -8,6 +8,6 @@ module.exports = {
     const max = 100;
     const min = 1;
     const number = Math.floor(Math.random() * (max - min + 1)) + min;
-    await interaction.reply(number);
+    await interaction.reply(number.toString(10));
   },
 };
