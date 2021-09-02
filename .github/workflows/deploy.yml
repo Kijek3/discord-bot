@@ -26,6 +26,10 @@ jobs:
         username: ${{ secrets.USERNAME }}
         port: ${{ secrets.PORT }}
         script: |
-          node --version
-          ls
+          cd mordeusz-discord-bot
+          git pull -q
+          npm i
+          node deploy-commands.js
+          pm2 restart mordeusz
+          pm2 list
 
