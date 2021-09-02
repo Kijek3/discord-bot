@@ -31,5 +31,4 @@ jobs:
           npm i
           node deploy-commands.js
           pm2 restart mordeusz
-          pm2 list
 
