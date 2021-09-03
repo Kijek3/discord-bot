@@ -10,8 +10,9 @@ module.exports = {
   async execute(interaction) {
     const min = 1;
     const max = 598247;
-    const number = Math.floor(Math.random() * (max - min + 1)) + min;
-    const url = `https://api.rawg.io/api/games?key=${rawgToken}&page_size=1&page=${number}`;
+    const randomId = Math.floor(Math.random() * (max - min + 1)) + min;
+    const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+    const url = `https://api.rawg.io/api/games?key=${rawgToken}&page_size=1&page=${randomId}`;
     await fetch(url)
       .then(res => res.json())
       .then(data => {
@@ -19,7 +20,7 @@ module.exports = {
           .then(res2 => res2.json())
           .then(game => {
             const embed = new MessageEmbed()
-              .setColor('#0099ff')
+              .setColor(`#${randomColor}`)
               .setTitle(game.name)
               .setURL(`https://rawg.io/games/${game.slug}`)
               .setDescription(game.description.replace(/<br\/?[^>]+(>|$)/g, '\n').replace(/<\/?[^>]+(>|$)/g, ''))
