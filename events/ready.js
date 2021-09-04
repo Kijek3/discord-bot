@@ -16,6 +16,6 @@ module.exports = {
       });
       const channel = client.channels.cache.get('883819747697897513');
       channel.send(resp.description);
-    }, 60000);
+    }, 1000 * 60 * 60);
   },
 };
