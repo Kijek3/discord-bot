@@ -1,6 +1,4 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-
-// const { Op } = require('sequelize');
 const { Weather } = require('../db-objects.js');
 
 module.exports = {
