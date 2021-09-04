@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    - name: executing remote ssh commands using password
+    - name: executing remote ssh commands
       uses: appleboy/ssh-action@master
       # all environment variables needed to connect with Server is placed in with. 
       with:
@@ -29,7 +29,7 @@ jobs:
           cd mordeusz-discord-bot
           git reset --hard
           git pull -q
-          npm i
-          node deploy-commands.js
+          npm ci
+          npm run setup
           pm2 restart mordeusz
 
