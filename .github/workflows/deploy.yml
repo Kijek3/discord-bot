@@ -1,7 +1,7 @@
 # Give the workflow a name. 
-name: Continuous Deployment
+name: Deploy bot
 
-# Trigger Workflow on master/production branch. 
+# Trigger Workflow on main/production branch. 
 
 on:
   push:
@@ -23,10 +23,12 @@ jobs:
         key: ${{ secrets.KEY }}
         username: ${{ secrets.USERNAME }}
         port: ${{ secrets.PORT }}
+        passphrase: ${{ secrets.PASSPHRASE }}
         script_stop: true
         script: |
           cd mordeusz-discord-bot
           git reset --hard
+          git checkout main
           git pull -q
           npm ci
           npm run setup
