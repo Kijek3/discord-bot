@@ -15,5 +15,7 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
+      - name: Install modules
+        run: npm ci
       - name: Eslint
         run: npm run lint
