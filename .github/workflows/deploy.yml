@@ -1,23 +1,27 @@
-# Give the workflow a name. 
 name: Deploy bot
-
-# Trigger Workflow on main/production branch. 
 
 on:
   push:
     branches: [ main ]
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  lint:
+    name: Check lint rules
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Install modules
+        run: npm ci
+      - name: Eslint
+        run: npm run lint
   deploy:
     name: Deploy
-    # make sure to run this action in Linux env (say ubuntu)
     runs-on: ubuntu-latest
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    needs: lint
     steps:
     - name: executing remote ssh commands
       uses: appleboy/ssh-action@master
-      # all environment variables needed to connect with Server is placed in with. 
       with:
         host: ${{ secrets.HOST }}
         key: ${{ secrets.KEY }}
@@ -25,12 +29,5 @@ jobs:
         port: ${{ secrets.PORT }}
         passphrase: ${{ secrets.PASSPHRASE }}
         script_stop: true
-        script: |
-          cd mordeusz-discord-bot
-          git reset --hard
-          git checkout main
-          git pull -q
-          npm ci
-          npm run setup
-          pm2 restart mordeusz
+        script: ./deploy.sh
 
