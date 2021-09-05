@@ -8,7 +8,7 @@ module.exports = {
     client.user.setActivity('ofiary', { type: 'WATCHING' });
     console.log(`Ready! Logged in as ${client.user.tag}`);
 
-    const job = new CronJob('0 0 8,12,18 * * *', async () => {
+    const job = new CronJob('0 0 6,10,16 * * *', async () => {
       const min = 1;
       const max = await Weather.count();
       const randomId = Math.floor(Math.random() * (max - min + 1)) + min;
