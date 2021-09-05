@@ -8,12 +8,10 @@ const sequelize = new Sequelize('database', 'username', 'password', {
 });
 
 const Weather = require('./models/Weather.js')(sequelize, DataTypes);
+const Config = require('./models/Config.js')(sequelize, DataTypes);
 
-Weather.prototype.getDesc = async function() {
-  const desc = await Weather.findOne({
-    order: sequelize.random(),
-  });
-  return desc;
+module.exports = {
+  sequelize,
+  Weather,
+  Config,
 };
-
-module.exports = { Weather, sequelize };
