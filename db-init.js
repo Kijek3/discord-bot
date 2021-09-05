@@ -7,15 +7,11 @@ const sequelize = new Sequelize('database', 'username', 'password', {
   storage: 'database.sqlite',
 });
 
-const Weather = require('./models/Weather.js')(sequelize, DataTypes);
+require('./models/Weather.js')(sequelize, DataTypes);
 
 const force = process.argv.includes('--force') || process.argv.includes('-f');
 
 sequelize.sync({ force }).then(async () => {
-  const weather = [
-    Weather.upsert({ description: 'Ależ wieje' }),
-  ];
-  await Promise.all(weather);
   console.log('Database synced');
   sequelize.close();
 }).catch(console.error);
