@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { Weather } = require('../db-objects.js');
+const { Weather, sequelize } = require('../db-objects.js');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -13,11 +13,8 @@ module.exports = {
       await Weather.create({ description: desc });
       await interaction.reply({ content: 'Status pogody dodany!', ephemeral: true });
     } else {
-      const min = 1;
-      const max = await Weather.count();
-      const randomId = Math.floor(Math.random() * (max - min + 1)) + min;
       const resp = await Weather.findOne({
-        where: { id: randomId },
+        order: sequelize.random(),
       });
       await interaction.reply(resp.description);
     }
