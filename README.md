@@ -1,7 +1,7 @@
 ## About
 - Mordeusz was created using [discord.js](https://discord.js.org) library
 - Bot uses Discord slash commands for interactions
-- **Mordeusz is in very early state of developing 🔧**
+- **Mordeusz is in very early state of development 🔧**
 - The main function of the bot will be the cooperative rogue like game on Discord! 🎮
 - For now bot supports basic commands to test some API features and configuration 👨‍🏫
 ## Build bot
