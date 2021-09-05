@@ -8,10 +8,10 @@ const sequelize = new Sequelize('database', 'username', 'password', {
 });
 
 const Weather = require('./models/Weather.js')(sequelize, DataTypes);
-const Config = require('./models/Config.js')(sequelize, DataTypes);
+const Settings = require('./models/Settings.js')(sequelize, DataTypes);
 
 module.exports = {
   sequelize,
   Weather,
-  Config,
+  Settings,
 };

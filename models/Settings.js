@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('config', {
+  return sequelize.define('settings', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -11,7 +11,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     value: {
       type: DataTypes.STRING,
-      unique: true,
     },
   }, {
     timestamps: false,
