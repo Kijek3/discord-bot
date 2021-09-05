@@ -1,3 +1,4 @@
+const CronJob = require('cron').CronJob;
 const { Weather } = require('../db-objects.js');
 
 module.exports = {
@@ -7,7 +8,7 @@ module.exports = {
     client.user.setActivity('ofiary', { type: 'WATCHING' });
     console.log(`Ready! Logged in as ${client.user.tag}`);
 
-    setInterval(async () => {
+    const job = new CronJob('0 0 8,12,18 * * *', async () => {
       const min = 1;
       const max = await Weather.count();
       const randomId = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -16,6 +17,8 @@ module.exports = {
       });
       const channel = client.channels.cache.get('883819747697897513');
       channel.send(resp.description);
-    }, 1000 * 60 * 60);
+    });
+
+    job.start();
   },
 };
