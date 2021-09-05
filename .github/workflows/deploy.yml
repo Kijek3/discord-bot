@@ -1,23 +1,16 @@
-# Give the workflow a name. 
 name: Deploy bot
-
-# Trigger Workflow on main/production branch. 
 
 on:
   push:
     branches: [ main ]
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   deploy:
     name: Deploy
-    # make sure to run this action in Linux env (say ubuntu)
     runs-on: ubuntu-latest
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     - name: executing remote ssh commands
       uses: appleboy/ssh-action@master
-      # all environment variables needed to connect with Server is placed in with. 
       with:
         host: ${{ secrets.HOST }}
         key: ${{ secrets.KEY }}
