@@ -1,10 +1,10 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { Permissions } = require('discord.js');
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('settings')
     .setDescription('Manage bot settings')
+    .setDefaultPermission(false)
     .addSubcommandGroup(subcommandGroup =>
       subcommandGroup
         .setName('weather')
@@ -38,11 +38,7 @@ module.exports = {
         ),
     ),
   async execute(interaction) {
-    if (interaction.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR)) {
-      const command = require(`./settings/${interaction.options.getSubcommandGroup()}/${interaction.options.getSubcommand()}.js`);
-      await command.execute(interaction);
-    } else {
-      await interaction.reply({ content: 'You must be administrator of this server to use settings', ephemeral: true });
-    }
+    const command = require(`./settings/${interaction.options.getSubcommandGroup()}/${interaction.options.getSubcommand()}.js`);
+    await command.execute(interaction);
   },
 };
