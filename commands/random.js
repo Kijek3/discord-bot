@@ -6,6 +6,17 @@ module.exports = {
     .setDescription('Feel the madness of randomness')
     .addSubcommand(subcommand =>
       subcommand
+        .setName('spotify')
+        .setDescription('Find your next artist')
+        .addStringOption(option => option
+          .setName('genre')
+          .setDescription('What genre are you interested in?')
+          .setRequired(true)
+          .addChoice('random', 'random'),
+        ),
+    )
+    .addSubcommand(subcommand =>
+      subcommand
         .setName('game')
         .setDescription('Find your next game'),
     )
