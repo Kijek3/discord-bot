@@ -10,9 +10,7 @@ module.exports = {
         .setDescription('Find your next artist')
         .addStringOption(option => option
           .setName('genre')
-          .setDescription('What genre are you interested in?')
-          .setRequired(true)
-          .addChoice('random', 'random'),
+          .setDescription('What genre are you interested in?'),
         ),
     )
     .addSubcommand(subcommand =>
