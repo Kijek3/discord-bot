@@ -1,6 +1,8 @@
 const fs = require('fs');
 const { Client, Collection, Intents } = require('discord.js');
-const { token } = require('./config.json');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 client.commands = new Collection();
@@ -21,4 +23,4 @@ for (const file of commandFiles) {
   client.commands.set(command.data.name, command);
 }
 
-client.login(token);
+client.login(process.env.TOKEN);
