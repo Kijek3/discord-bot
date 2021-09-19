@@ -5,7 +5,7 @@
 - The main function of the bot will be the cooperative rogue like game on Discord! 🎮
 - For now bot supports basic commands to test some API features and configuration 👨‍🏫
 ## Build bot
-- Copy `config-template.json` to new file `config.json`
+- Copy `.env.template` to new file `.env`
 - Insert proper bot token and ids from your Discord application [panel](https://discord.com/developers/applications)
 - If you want to use `random-game` command generate your RAWG API Token [here](https://rawg.io/apidocs)
 - Install all dependencies with `npm install`

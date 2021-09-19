@@ -1,5 +1,4 @@
 const fetch = require('node-fetch');
-const { rawgToken } = require('../../config.json');
 const { MessageEmbed } = require('discord.js');
 
 module.exports = {
@@ -8,12 +7,12 @@ module.exports = {
     const max = 598247;
     const randomId = Math.floor(Math.random() * (max - min + 1)) + min;
     const randomColor = Math.floor(Math.random() * 16777215).toString(16);
-    const url = `https://api.rawg.io/api/games?key=${rawgToken}&page_size=1&page=${randomId}`;
+    const url = `https://api.rawg.io/api/games?key=${process.env.RAWG_TOKEN}&page_size=1&page=${randomId}`;
     await interaction.deferReply();
     await fetch(url)
       .then(res => res.json())
       .then(data => {
-        fetch(`https://api.rawg.io/api/games/${data.results[0].id}?key=${rawgToken}`)
+        fetch(`https://api.rawg.io/api/games/${data.results[0].id}?key=${process.env.RAWG_TOKEN}`)
           .then(res2 => res2.json())
           .then(game => {
             const embed = new MessageEmbed()

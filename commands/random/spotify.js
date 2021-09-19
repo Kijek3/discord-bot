@@ -1,5 +1,4 @@
 const fetch = require('node-fetch');
-const { spotifyToken } = require('../../config.json');
 const { shuffleArray } = require('../../util');
 const { MessageActionRow, MessageButton } = require('discord.js');
 
@@ -8,7 +7,7 @@ async function getToken() {
   await fetch('https://accounts.spotify.com/api/token', {
     method: 'POST',
     headers: {
-      Authorization: `Basic ${spotifyToken}`,
+      Authorization: `Basic ${process.env.SPOTIFY_TOKEN}`,
       'Content-Type': 'application/x-www-form-urlencoded',
     },
     body: 'grant_type=client_credentials',
