@@ -1,4 +1,4 @@
-//index.js
+// index.js
 const fs = require('fs');
 const { Client, Collection, Intents } = require('discord.js');
 const dotenv = require('dotenv');
