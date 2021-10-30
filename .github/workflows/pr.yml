@@ -19,3 +19,14 @@ jobs:
         run: npm ci
       - name: Eslint
         run: npm run lint
+      - name: executing remote ssh commands
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          key: ${{ secrets.KEY }}
+          username: ${{ secrets.USERNAME }}
+          port: ${{ secrets.PORT }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          script_stop: true
+          script: ./deploy.sh
+
